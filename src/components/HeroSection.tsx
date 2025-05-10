@@ -54,14 +54,60 @@ const HeroSection = () => {
           </div>
           
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-            <div className="relative w-60 h-60 md:w-80 md:h-80 animate-float">
+            <div className="relative w-80 h-80 md:w-96 md:h-96 animate-float">
               <div className="absolute inset-0 bg-gm-green/20 rounded-full filter blur-3xl animate-pulse-gentle"></div>
               <div className="relative z-10 h-full w-full flex items-center justify-center">
-                <img 
-                  src="/lovable-uploads/29c454c4-e49c-4c54-88e5-22dee0bf2575.png" 
-                  alt="Green Mantis Logo" 
-                  className="w-full animate-rotate-slow"
-                />
+                <div className="astronaut-container relative w-full h-full">
+                  {/* Animated astronaut floating in space */}
+                  <div className="astronaut absolute inset-0 w-full h-full flex items-center justify-center">
+                    <div className="relative w-full h-full">
+                      {/* Main astronaut animation */}
+                      <div className="absolute inset-0 flex items-center justify-center animate-float">
+                        <svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="animate-pulse-gentle">
+                          {/* Astronaut helmet */}
+                          <circle cx="120" cy="100" r="50" fill="#E0E0E0" />
+                          <circle cx="120" cy="100" r="45" fill="#1A1A2E" />
+                          <circle cx="120" cy="100" r="40" fill="#0F1621" />
+                          <path d="M100 85 Q120 70, 140 85" stroke="#8BC34A" strokeWidth="2" />
+                          
+                          {/* Astronaut body */}
+                          <path d="M90 100 Q120 180, 150 100" fill="#E0E0E0" />
+                          
+                          {/* Green Mantis logo in visor */}
+                          <path d="M110 95 L130 95 L120 110 Z" fill="#8BC34A" className="animate-pulse" />
+                          
+                          {/* Stars in background */}
+                          <circle cx="110" cy="85" r="1" fill="white" className="animate-pulse" />
+                          <circle cx="130" cy="85" r="1" fill="white" className="animate-pulse" />
+                          <circle cx="120" cy="75" r="1" fill="white" className="animate-pulse" />
+                        </svg>
+                      </div>
+                      
+                      {/* Orbiting planets/satellites */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative w-full h-full animate-rotate-slow">
+                          <div className="absolute top-10 right-20 w-6 h-6 bg-gm-green rounded-full opacity-70"></div>
+                          <div className="absolute bottom-40 left-20 w-4 h-4 bg-blue-400 rounded-full opacity-70"></div>
+                        </div>
+                      </div>
+                      
+                      {/* Star field background */}
+                      <div className="absolute inset-0">
+                        {[...Array(20)].map((_, i) => (
+                          <div 
+                            key={i}
+                            className="absolute w-1 h-1 bg-white rounded-full animate-pulse-gentle"
+                            style={{
+                              top: `${Math.random() * 100}%`,
+                              left: `${Math.random() * 100}%`,
+                              animationDelay: `${Math.random() * 2}s`
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
