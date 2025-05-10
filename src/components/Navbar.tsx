@@ -18,6 +18,11 @@ const Navbar = () => {
     };
   }, []);
 
+  // Close mobile menu when changing routes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -29,7 +34,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
+        isScrolled || mobileMenuOpen
           ? 'bg-gm-dark/95 backdrop-blur-lg shadow-lg' 
           : 'bg-transparent'
       }`}
@@ -84,9 +89,9 @@ const Navbar = () => {
           <div className="hidden md:block">
             <Link
               to="/contact"
-              className="bg-gm-green text-white px-6 py-2.5 rounded-md font-medium text-sm hover:bg-gm-green/90 transition-colors"
+              className="bg-gm-green hover:bg-gm-green/90 text-white px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-gm-green/20"
             >
-              Get in Touch
+              Get a Quote
             </Link>
           </div>
 
@@ -94,7 +99,8 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={toggleMobileMenu}
-              className="text-white hover:text-gm-green focus:outline-none"
+              className="text-white hover:text-gm-green focus:outline-none transition-colors"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               {mobileMenuOpen ? (
                 <X size={24} />
@@ -108,7 +114,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-gm-darker border-t border-gm-green/20">
+        <div className="md:hidden bg-gm-darker border-t border-gm-green/20 animate-fade-in">
           <div className="container mx-auto px-4 py-4 space-y-4">
             <Link
               to="/"
@@ -149,10 +155,10 @@ const Navbar = () => {
             <div className="pt-2">
               <Link
                 to="/contact"
-                className="block w-full bg-gm-green text-white text-center px-6 py-2.5 rounded-md font-medium text-sm"
+                className="block w-full bg-gm-green text-white text-center px-6 py-2.5 rounded-md font-medium text-sm hover:bg-gm-green/90 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Get in Touch
+                Get a Quote
               </Link>
             </div>
           </div>
